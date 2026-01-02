@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monopoly Bank Manager</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-logo">
+            <h1>🏦 Monopoly Bank</h1>
+            <p class="subtitle">Gestiona el dinero del juego en tiempo real</p>
+        </div>
+
+        <div class="main-actions">
+            <div class="action-card">
+                <div class="icon">🏛️</div>
+                <h2>Soy el Banco</h2>
+                <p>Crea una nueva sala y gestiona las transacciones del juego</p>
+                <button id="createRoomBtn" class="btn btn-primary">Crear Sala</button>
+            </div>
+
+            <div class="action-card">
+                <div class="icon">🎮</div>
+                <h2>Soy Jugador</h2>
+                <p>Únete a una sala existente con el código</p>
+                <button id="joinRoomBtn" class="btn btn-secondary">Unirse a Sala</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Crear Sala -->
+    <div id="createRoomModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>🏛️ Crear Nueva Sala</h2>
+            <p class="modal-description">Como banco, controlarás todas las transacciones del juego</p>
+            
+            <div class="form-group">
+                <label for="bankNameInput">Nombre del Banco</label>
+                <input type="text" id="bankNameInput" placeholder="Ej: Banco Central" maxlength="20" required>
+            </div>
+
+            <div class="form-group">
+                <label>Dinero inicial por jugador</label>
+                <select id="initialMoneySelect">
+                    <option value="1500">$1,500 (Clásico)</option>
+                    <option value="2000">$2,000 (Generoso)</option>
+                    <option value="1000">$1,000 (Difícil)</option>
+                </select>
+            </div>
+
+            <div class="button-group">
+                <button id="confirmCreateBtn" class="btn btn-primary">Crear Sala</button>
+                <button class="btn btn-secondary cancel-modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Unirse a Sala -->
+    <div id="joinRoomModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>🎮 Unirse a Sala</h2>
+            <p class="modal-description">Ingresa el código que te proporcionó el banco</p>
+            
+            <div class="form-group">
+                <label for="roomCodeInput">Código de Sala</label>
+                <input type="text" id="roomCodeInput" placeholder="Ej: ABC123" maxlength="6" style="text-transform: uppercase;">
+            </div>
+
+            <div class="form-group">
+                <label for="playerNameInput">Tu Nombre</label>
+                <input type="text" id="playerNameInput" placeholder="Ej: Juan" maxlength="20" required>
+            </div>
+
+            <div class="form-group">
+                <label>Elige tu color</label>
+                <div class="color-picker" id="colorPicker">
+                    <div class="color-option" data-color="#e74c3c" style="background: #e74c3c;">
+                        <span class="color-check">✓</span>
+                    </div>
+                    <div class="color-option" data-color="#3498db" style="background: #3498db;">
+                        <span class="color-check">✓</span>
+                    </div>
+                    <div class="color-option" data-color="#2ecc71" style="background: #2ecc71;">
+                        <span class="color-check">✓</span>
+                    </div>
+                    <div class="color-option" data-color="#f39c12" style="background: #f39c12;">
+                        <span class="color-check">✓</span>
+                    </div>
+                    <div class="color-option" data-color="#9b59b6" style="background: #9b59b6;">
+                        <span class="color-check">✓</span>
+                    </div>
+                    <div class="color-option" data-color="#1abc9c" style="background: #1abc9c;">
+                        <span class="color-check">✓</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button id="confirmJoinBtn" class="btn btn-primary">Unirse</button>
+                <button class="btn btn-secondary cancel-modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Loading -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Cargando...</p>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
